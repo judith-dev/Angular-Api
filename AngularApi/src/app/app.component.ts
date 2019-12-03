@@ -1,20 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { UserService } from './user.service';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  name = 'Angular 5';
-  fileUrl;
-  constructor(private sanitizer: DomSanitizer) {  }
-  ngOnInit() {
-    const data = 'some text';
-    const blob = new Blob([data], { type: 'application/octet-stream' });
+  title = 'AngularApi';
+  users: any[] = [];
 
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  constructor(
+    protected userService: UserService
+  ) {
   }
 
+  
+
+  ngOnInit() {
+    this.userService.getUsers()
+    .subscribe(
+      (data) => { // Success
+        this.users = data['results'];
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }
