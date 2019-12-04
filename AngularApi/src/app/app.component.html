@@ -1,5 +1,34 @@
-<div *ngFor='let user of users'>
+<!-- <div *ngFor='let user of users'>
     <img [src]="user.picture.medium">
     <h2>{{ user.name.first | uppercase }}</h2>
     <p>{{ user.email }}</p>
+</div> -->
+<div class='container-fluid d-flex'>
+    <!-- <div class="row" style="padding: 20px;">
+        <div class="col-sm-12 btn btn-success">
+            Use Bootstrap carousel in Angular 8 Project
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div *ngFor='let user of users'>
+                <img [src]="user.picture.medium">
+                <div>
+                    <h3 style="color: yellow">{{ user.email }}</h3>
+                </div>
+            </div>
+        </div> 
+    </div>-->
+
+</div>
+<div class="card d-flex">
+    <!-- Card Header -->
+    <div *ngFor='let user of users'>
+        <div class="card-block">
+            <h4 class="card-title">{{ user.name.first | uppercase }}</h4>
+            <img [src]="user.picture.medium">
+            <p class="card-text">{{ user.email }}
+            </p>
+        </div>
+    </div>
 </div>
